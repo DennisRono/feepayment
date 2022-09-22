@@ -1,0 +1,52 @@
+@forward 'globals/index';
+
+*{
+    padding: 0;
+    margin: 0;
+}
+li{
+    list-style: none;
+}
+html,body{
+    border-style: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--bg-color);
+    width: 100%;
+    color: var(--text-color);
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
+    position: relative;
+    z-index: 0 !important;
+    scroll-behavior: smooth;
+    line-height: 1.5;
+}
+.App{
+  background-color: var(--bg-color);
+}
+body{
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: #ffffff00;
+  }
+  &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+  }
+  &::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 23px;
+  }
+}
+
+//hide increment and decrement in number input types
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

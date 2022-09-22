@@ -1,0 +1,27 @@
+/*===theme toggler===*/
+[data-theme='light'] {
+    --bg-color: #f2fffa;
+    --bg-color-inverse: #171c28;
+    --text-color: #444452;
+    --text-color-inverse: #e6e6e6;
+    --bg-card: #86d9e1;
+    --back-related: #98b2dd;
+    --toggle-transform: translate(0);
+    transition: 0.5s;
+}
+
+[data-theme='dark'] {
+    --bg-color: #171c28;
+    --bg-color-inverse: #d6ffef;
+    --text-color: #e6e6e6;
+    --text-color-inverse: #444452;
+    --bg-card: #2e2e5b;
+    --back-related: #1e304d;
+    --toggle-transform: translate(120%);
+    transition: 0.5s;
+}
+:root{
+    // theme default
+    --bg-color: #d6ffef;
+    --color--vivid-cyan-blue: #0693e3;
+}
