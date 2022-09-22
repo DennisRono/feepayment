@@ -4,7 +4,7 @@ const conn = require("../db/conn");
 let blogodb = {};
 blogodb.all = () => {
   return new Promise((resolve, reject)=>{
-    conn.query('SELECT * FROM users', (err, results)=>{
+    conn.query('SELECT * FROM students', (err, results)=>{
       if(err){return reject(err);}
       return resolve(results)
     });
@@ -14,7 +14,7 @@ blogodb.all = () => {
 //fetch one record
 blogodb.one = (email, userID) => {
   return new Promise((resolve, reject)=>{
-    conn.query('SELECT * FROM users WHERE Email = ? || UserID = ?', [email, userID], (err, results)=>{
+    conn.query('SELECT * FROM students WHERE Email = ? || UserID = ?', [email, userID], (err, results)=>{
       if(err){return reject(err);}
       return resolve(results[0])
     });
@@ -25,10 +25,10 @@ blogodb.one = (email, userID) => {
 //create a new record
 blogodb.create = (userData) => {
   return new Promise((resolve, reject)=>{
-    conn.query("SELECT Email FROM  users WHERE Email = ?", [userData.email], (err, result) => {
+    conn.query("SELECT Email FROM  students WHERE Email = ?", [userData.email], (err, result) => {
         if(err){return reject(err);}
         if(result.length === 0){
-          conn.query('INSERT INTO users(Email, Phone, Password, UserID) VALUES( ?, ?, ?, ? )', [ userData.email, userData.phone, userData.password, userData.userID ], (err, results)=>{
+          conn.query('INSERT INTO students(Email, Phone, Password, UserID) VALUES( ?, ?, ?, ? )', [ userData.email, userData.phone, userData.password, userData.userID ], (err, results)=>{
             if(err){return reject(err);}
             return resolve(results)
           });
@@ -42,10 +42,10 @@ blogodb.create = (userData) => {
 //register a new user to the system
 blogodb.reguser = (userData) => {
   return new Promise((resolve, reject)=>{
-    conn.query("SELECT Email FROM  users WHERE Email = ?", [userData.email], (err, result) => {
+    conn.query("SELECT Email FROM  students WHERE Email = ?", [userData.email], (err, result) => {
         if(err){return reject(err);}
         if(result.length === 0){
-          conn.query('INSERT INTO users(FullName, Email, Phone, Password, UserID, SessionID) VALUES( ?, ?, ?, ?, ?, ? )', [ userData.fullname, userData.email, userData.phone, userData.password, userData.userID, userData.sessionID ], (err, results)=>{
+          conn.query('INSERT INTO students(FullName, Email, Phone, Password, UserID, SessionID) VALUES( ?, ?, ?, ?, ?, ? )', [ userData.fullname, userData.email, userData.phone, userData.password, userData.userID, userData.sessionID ], (err, results)=>{
             return resolve(results)
           });
         }else{
@@ -76,7 +76,7 @@ blogodb.googlereg = (userData) => {
 //update a record
 blogodb.update = (id, userData) => {
   return new Promise((resolve, reject)=>{
-    conn.query('UPDATE users SET name=?, released_year=?, githut_rank=?, pypl_rank=?, tiobe_rank=? WHERE id=?', [ userData.name, userData.released_year, userData.githut_rank, userData.pypl_rank, userData.tiobe_rank, id ], (err, results)=>{
+    conn.query('UPDATE students SET name=?, released_year=?, githut_rank=?, pypl_rank=?, tiobe_rank=? WHERE id=?', [ userData.name, userData.released_year, userData.githut_rank, userData.pypl_rank, userData.tiobe_rank, id ], (err, results)=>{
       if(err){return reject(err);}
       return resolve(results)
     });
@@ -85,7 +85,7 @@ blogodb.update = (id, userData) => {
 //remove a record
 blogodb.update = (id) => {
   return new Promise((resolve, reject)=>{
-    conn.query('DELETE FROM users WHERE id=?', [id], (err, results)=>{
+    conn.query('DELETE FROM students WHERE id=?', [id], (err, results)=>{
       if(err){return reject(err);}
       return resolve(results)
     });

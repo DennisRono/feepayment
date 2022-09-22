@@ -9,11 +9,4 @@ const conn = mysql.createPool({
     database: process.env.DATABASE,
 })
 
-conn.query(
-    "SELECT * FROM users",
-    (err, result) => {
-      err ? console.log(err) : console.log("conn succ");
-    }
-  )
-
 module.exports = conn
