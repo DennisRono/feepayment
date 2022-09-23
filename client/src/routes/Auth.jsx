@@ -22,11 +22,11 @@ const Auth = () => {
         password: ''
     })
 
-    const [response, setResponse] = useState({message: ''})
+    const [response, setResponse] = useState({message: '', type: ''})
     const registerSubmit = async (e) => {
         e.preventDefault()
         let res = await api('POST', 'auth/register', register)
-        setResponse({message: res.message, type: res.type})
+        setResponse(res)
         setRegister({
             fname: '',
             lname: '',
@@ -40,8 +40,6 @@ const Auth = () => {
             cpassword: ''
         })
     }
-    
-    console.log(response);
 
     const loginSubmit = async (e) => {
         e.preventDefault()
@@ -59,7 +57,8 @@ const Auth = () => {
             <div className="contact-wrapper">
                 <div className="contFormSec">
                     <h2 className="contact-header">Fees Payment System</h2>
-                    {(response.message!=='')?<p className={(response.type==='success')?"formNotifySucc":"formNotify"}>{response}</p>:null}
+                    {console.log(response.message!=='')}
+                    {(response.message!=='')?<p className={(response.type==='success')?"formNotifySucc":"formNotify"}>{response.message}</p>:null}
                     <form action="contact.php" method="POST" className={(active==='register')?"registration-form":"hide-activity"} onSubmit={(e)=>registerSubmit(e)}>
                         <h3>Register</h3>
                         <div className="cont-group">
