@@ -21,7 +21,7 @@ router.post("/register", async (req, res, next) => {
                         try {
                             let uobj = { fname: "TBA", lname: "TBA", regno: validate.regno, password: hash, phone: validate.phone, year: "2022", school: "TBA", semester: "1", department: "TBA", userID: userid }
                             db.create(uobj);
-                            res.json({status: 200, type: "success", message: "Student registered successfully!"});
+                            res.json({status: 200, type: "success", message: "Student registered successfully!"})
                         } catch (err) { res.status(500).json({"status": 500,"type":"Error","details":err}); }
                     })
                 })
@@ -29,10 +29,19 @@ router.post("/register", async (req, res, next) => {
         })
     } catch (err){
         if (err.isJoi === true) {
-            res.status(400).json({"status": 400,"type":"Error","message":err.details[0].message});
+            res.status(400).json({"status": 400,"type":"Error","message":err.details[0].message})
         } else {
-            res.status(500).json({"status": 500,"type":"Error","details":err});
+            res.status(500).json({"status": 500,"type":"Error","details":err})
         }
+    }
+})
+
+// complete registration TBA
+router.post('/tba', (req, res, next) => {
+    try {
+        
+    } catch (err) {
+        res.status(500).json({"status": 500,"type":"Error","details":err})
     }
 })
 
