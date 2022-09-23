@@ -20,6 +20,34 @@ const Auth = () => {
         regno: '',
         password: ''
     })
+
+    const [response, setResponse] = useState('testing out the response')
+    const registerSubmit = async (e) => {
+        e.preventDefault()
+        let res = await api('POST', 'register', register)
+        setResponse(res.message)
+        setRegister({
+            fname: '',
+            lname: '',
+            regno: '',
+            school: '',
+            department: '',
+            semester: '',
+            year: '',
+            password: '',
+            cpassword: ''
+        })
+    }
+
+    const loginSubmit = async (e) => {
+        e.preventDefault()
+        let res = await api('POST', 'login', login)
+        setResponse(res.message)
+        setRegister({
+            regno: '',
+            password: ''
+        })
+    }
   return (
     <Fragment>
         <div className="authentification">
@@ -27,7 +55,8 @@ const Auth = () => {
             <div className="contact-wrapper">
                 <div className="contFormSec">
                     <h2 className="contact-header">Fees Payment System</h2>
-                    <form action="contact.php" method="POST" className={(active==='register')?"registration-form":"hide-activity"}>
+                    <p className="formNotify">{response}</p>
+                    <form action="contact.php" method="POST" className={(active==='register')?"registration-form":"hide-activity"} onSubmit={(e)=>registerSubmit(e)}>
                         <h3>Register</h3>
                         <div className="cont-group">
                             <div className="cont-gr-flex">
@@ -105,7 +134,7 @@ const Auth = () => {
                         <p>have an account? <span onClick={()=>{setActive('login')}}>Login here</span></p>
                         <input type="submit" value="register" name="contact" className="contact-btn"/>
                     </form>
-                    <form action="contact.php" method="POST" className={(active==='login')?"login-form":"hide-activity"}>
+                    <form action="contact.php" method="POST" className={(active==='login')?"login-form":"hide-activity"}  onSubmit={(e)=>loginSubmit(e)}>
                         <h3>Login</h3>
                         <div className="cont-group">
                             <div className="user-input-wrp">
