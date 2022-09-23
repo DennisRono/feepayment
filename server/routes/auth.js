@@ -11,7 +11,7 @@ router.post("/register", async (req, res, next) => {
     try{
         const validate = await registerDataSchema.validateAsync(req.body);
         await db.one(validate.regno).then((user) => {
-            if (user) {return res.status(400).json({"status": 400,"type":"Error","message":"user is already registered!"});}
+            if (user) {return res.json({"status": 400,"type":"Error","message":"user is already registered!"});}
             else{
                 bcrypt.genSalt(10, (err, salt) => {
                     if (err) {return res.status(422).send(err.message);}
@@ -22,16 +22,16 @@ router.post("/register", async (req, res, next) => {
                             let uobj = { fname: "TBA", lname: "TBA", regno: validate.regno, password: hash, phone: validate.phone, year: "2022", school: "TBA", semester: "1", department: "TBA", userID: userid }
                             db.create(uobj);
                             res.json({status: 200, type: "success", message: "Student registered successfully!"})
-                        } catch (err) { res.status(500).json({"status": 500,"type":"Error","details":err}); }
+                        } catch (err) { res.json({"status": 500,"type":"Error","details":err}); }
                     })
                 })
             }
         })
     } catch (err){
         if (err.isJoi === true) {
-            res.status(400).json({"status": 400,"type":"Error","message":err.details[0].message})
+            res.json({"status": 400,"type":"Error","message":err.details[0].message})
         } else {
-            res.status(500).json({"status": 500,"type":"Error","details":err})
+            res.json({"status": 500,"type":"Error","details":err})
         }
     }
 })

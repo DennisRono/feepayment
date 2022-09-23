@@ -21,10 +21,11 @@ const Auth = () => {
         password: ''
     })
 
-    const [response, setResponse] = useState('testing out the response')
+    const [response, setResponse] = useState('')
     const registerSubmit = async (e) => {
         e.preventDefault()
         let res = await api('POST', 'auth/register', register)
+        console.log("Response from the Server");
         setResponse(res.message)
         setRegister({
             fname: '',
