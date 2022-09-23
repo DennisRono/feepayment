@@ -24,7 +24,7 @@ const Auth = () => {
     const [response, setResponse] = useState('testing out the response')
     const registerSubmit = async (e) => {
         e.preventDefault()
-        let res = await api('POST', 'register', register)
+        let res = await api('POST', 'auth/register', register)
         setResponse(res.message)
         setRegister({
             fname: '',
@@ -41,7 +41,7 @@ const Auth = () => {
 
     const loginSubmit = async (e) => {
         e.preventDefault()
-        let res = await api('POST', 'login', login)
+        let res = await api('POST', 'auth/login', login)
         setResponse(res.message)
         setRegister({
             regno: '',
