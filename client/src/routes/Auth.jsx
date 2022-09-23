@@ -26,7 +26,7 @@ const Auth = () => {
     const registerSubmit = async (e) => {
         e.preventDefault()
         let res = await api('POST', 'auth/register', register)
-        setResponse(res)
+        setResponse({message: res.message, type: res.type})
         setRegister({
             fname: '',
             lname: '',
@@ -40,6 +40,8 @@ const Auth = () => {
             cpassword: ''
         })
     }
+    
+    console.log(response);
 
     const loginSubmit = async (e) => {
         e.preventDefault()
