@@ -32,7 +32,7 @@ const Auth = () => {
                                 <div className="contPut">
                                     <div className="user-input-wrp">
                                         <br/>
-                                        <input id="id-input" type="text" onKeyUp={this.setAttribute('value', this.value)} className="inputText" name="fname" value={register.fname} onChange={(e)=>{setRegister({ ...register, [e.target.name]: e.target.value })}}/>
+                                        <input id="id-input" type="text" className="inputText" name="fname" value={register.fname} onChange={(e)=>{setRegister({ ...register, [e.target.name]: e.target.value })}}/>
                                         <span className="floating-label">First Name <span style={{color: "red"}}>*</span></span>
                                     </div>
                                     <span id="id-err"></span>
@@ -40,7 +40,7 @@ const Auth = () => {
                                 <div className="contPut">
                                     <div className="user-input-wrp">
                                         <br/>
-                                        <input id="id-input" type="text" onKeyUp={this.setAttribute('value', this.value)} className="inputText" name="lname" value={register.lname} onChange={(e)=>{setRegister({ ...register, [e.target.name]: e.target.value })}}/>
+                                        <input id="id-input" type="text" className="inputText" name="lname" value={register.lname} onChange={(e)=>{setRegister({ ...register, [e.target.name]: e.target.value })}}/>
                                         <span className="floating-label">Last Name <span style={{color: "red"}}>*</span></span>
                                     </div>
                                     <span id="id-err"></span>
@@ -48,7 +48,7 @@ const Auth = () => {
                             </div>
                             <div className="user-input-wrp">
                                 <br/>
-                                <input id="id-input" type="text" onKeyUp={this.setAttribute('value', this.value)} className="inputText" name="regno" value={register.regno} onChange={(e)=>{setRegister({ ...register, [e.target.name]: e.target.value })}}/>
+                                <input id="id-input" type="text" className="inputText" name="regno" value={register.regno} onChange={(e)=>{setRegister({ ...register, [e.target.name]: e.target.value })}}/>
                                 <span className="floating-label">Registration Number <span style={{color: "red"}}>*</span></span>
                             </div>
                             <span id="id-err"></span>
@@ -56,7 +56,7 @@ const Auth = () => {
                                 <div className="contPut">
                                     <div className="user-input-wrp">
                                         <br/>
-                                        <input id="id-input" type="text" onKeyUp={this.setAttribute('value', this.value)} className="inputText" name="school" value={register.school} onChange={(e)=>{setRegister({ ...register, [e.target.name]: e.target.value })}}/>
+                                        <input id="id-input" type="text" className="inputText" name="school" value={register.school} onChange={(e)=>{setRegister({ ...register, [e.target.name]: e.target.value })}}/>
                                         <span className="floating-label">School <span style={{color: "red"}}>*</span></span>
                                     </div>
                                     <span id="id-err"></span>
@@ -64,7 +64,7 @@ const Auth = () => {
                                 <div className="contPut">
                                     <div className="user-input-wrp">
                                         <br/>
-                                        <input id="id-input" type="text" onKeyUp={this.setAttribute('value', this.value)} className="inputText" name="department" value={register.department} onChange={(e)=>{setRegister({ ...register, [e.target.name]: e.target.value })}}/>
+                                        <input id="id-input" type="text" className="inputText" name="department" value={register.department} onChange={(e)=>{setRegister({ ...register, [e.target.name]: e.target.value })}}/>
                                         <span className="floating-label">Department <span style={{color: "red"}}>*</span></span>
                                     </div>
                                     <span id="id-err"></span>
@@ -74,7 +74,7 @@ const Auth = () => {
                                 <div className="contPut">
                                     <div className="user-input-wrp">
                                         <br/>
-                                        <input id="id-input" type="text" onKeyUp={this.setAttribute('value', this.value)} className="inputText" name="semester" value={register.semester} onChange={(e)=>{setRegister({ ...register, [e.target.name]: e.target.value })}}/>
+                                        <input id="id-input" type="text" className="inputText" name="semester" value={register.semester} onChange={(e)=>{setRegister({ ...register, [e.target.name]: e.target.value })}}/>
                                         <span className="floating-label">Semester <span style={{color: "red"}}>*</span></span>
                                     </div>
                                     <span id="id-err"></span>
@@ -82,7 +82,7 @@ const Auth = () => {
                                 <div className="contPut">
                                     <div className="user-input-wrp">
                                         <br/>
-                                        <input id="id-input" type="text" onKeyUp={this.setAttribute('value', this.value)} className="inputText" name="year" value={register.year} onChange={(e)=>{setRegister({ ...register, [e.target.name]: e.target.value })}}/>
+                                        <input id="id-input" type="text" className="inputText" name="year" value={register.year} onChange={(e)=>{setRegister({ ...register, [e.target.name]: e.target.value })}}/>
                                         <span className="floating-label">Year of study <span style={{color: "red"}}>*</span></span>
                                     </div>
                                     <span id="id-err"></span>
@@ -90,12 +90,12 @@ const Auth = () => {
                             </div>
                             <div className="user-input-wrp">
                                 <br/>
-                                <input id="id-input" type="text" onKeyUp={this.setAttribute('value', this.value)} className="inputText" name="password" value={register.password} onChange={(e)=>{setRegister({ ...register, [e.target.name]: e.target.value })}}/>
+                                <input id="id-input" type="text" className="inputText" name="password" value={register.password} onChange={(e)=>{setRegister({ ...register, [e.target.name]: e.target.value })}}/>
                                 <span className="floating-label">Password <span style={{color: "red"}}>*</span></span>
                             </div>
                             <div className="user-input-wrp">
                                 <br/>
-                                <input id="id-input" type="text" onKeyUp={this.setAttribute('value', this.value)} className="inputText" name="cpassword" value={register.cpassword} onChange={(e)=>{setRegister({ ...register, [e.target.name]: e.target.value })}}/>
+                                <input id="id-input" type="text" className="inputText" name="cpassword" value={register.cpassword} onChange={(e)=>{setRegister({ ...register, [e.target.name]: e.target.value })}}/>
                                 <span className="floating-label">Confirm Password <span style={{color: "red"}}>*</span></span>
                             </div>
                             <span id="id-err"></span>
@@ -108,13 +108,13 @@ const Auth = () => {
                         <div className="cont-group">
                             <div className="user-input-wrp">
                                 <br/>
-                                <input id="id-input" type="text" onKeyUp={this.setAttribute('value', this.value)} className="inputText" name="regno" value={login.regno} onChange={(e)=>{setLogin({ ...login, [e.target.name]: e.target.value })}}/>
+                                <input id="id-input" type="text" className="inputText" name="regno" value={login.regno} onChange={(e)=>{setLogin({ ...login, [e.target.name]: e.target.value })}}/>
                                 <span className="floating-label">Registration Number <span style={{color: "red"}}>*</span></span>
                             </div>
                             <span id="id-err"></span>
                             <div className="user-input-wrp">
                                 <br/>
-                                <input id="id-input" type="text" onKeyUp={this.setAttribute('value', this.value)} className="inputText" name="password" value={login.password} onChange={(e)=>{setLogin({ ...login, [e.target.name]: e.target.value })}}/>
+                                <input id="id-input" type="text" className="inputText" name="password" value={login.password} onChange={(e)=>{setLogin({ ...login, [e.target.name]: e.target.value })}}/>
                                 <span className="floating-label">Password <span style={{color: "red"}}>*</span></span>
                             </div>
                             <span id="id-err"></span>
