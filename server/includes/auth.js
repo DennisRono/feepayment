@@ -28,7 +28,7 @@ blogodb.create = (userData) => {
     conn.query("SELECT RegistrationNumber FROM  students WHERE RegistrationNumber = ?", [userData.email], (err, result) => {
         if(err){return reject(err);}
         if(result.length === 0){
-          conn.query('INSERT INTO students(RegistrationNumber, PhoneNumber, Password, UserID) VALUES( ?, ?, ?, ? )', [ userData.regno, userData.phone, userData.password, userData.userID ], (err, results)=>{
+          conn.query('INSERT INTO students(FirstName, LastName, RegistrationNumber, PhoneNumber, Password, YearOfStudy, Semester, School, Department, UserID) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )', [ userData.fname, userData.lname, userData.regno, userData.phone, userData.password, userData.year, userData.semester, userData.school, userData.department, userData.userID ], (err, results)=>{
             if(err){return reject(err);}
             return resolve(results)
           });
