@@ -28,7 +28,7 @@ blogodb.create = (userData) => {
     conn.query("SELECT RegistrationNumber FROM  students WHERE RegistrationNumber = ?", [userData.email], (err, result) => {
         if(err){return reject(err);}
         if(result.length === 0){
-          conn.query('INSERT INTO students(RegistrationNumber, Phone, Password, UserID) VALUES( ?, ?, ?, ? )', [ userData.email, userData.phone, userData.password, userData.userID ], (err, results)=>{
+          conn.query('INSERT INTO students(RegistrationNumber, PhoneNumber, Password, UserID) VALUES( ?, ?, ?, ? )', [ userData.regno, userData.phone, userData.password, userData.userID ], (err, results)=>{
             if(err){return reject(err);}
             return resolve(results)
           });
@@ -45,7 +45,7 @@ blogodb.reguser = (userData) => {
     conn.query("SELECT RegistrationNumber FROM  students WHERE RegistrationNumber = ?", [userData.email], (err, result) => {
         if(err){return reject(err);}
         if(result.length === 0){
-          conn.query('INSERT INTO students(FullName, RegistrationNumber, Phone, Password, UserID, SessionID) VALUES( ?, ?, ?, ?, ?, ? )', [ userData.fullname, userData.email, userData.phone, userData.password, userData.userID, userData.sessionID ], (err, results)=>{
+          conn.query('INSERT INTO students(FullName, RegistrationNumber, PhoneNumber, Password, UserID, SessionID) VALUES( ?, ?, ?, ?, ?, ? )', [ userData.fullname, userData.email, userData.phone, userData.password, userData.userID, userData.sessionID ], (err, results)=>{
             return resolve(results)
           });
         }else{

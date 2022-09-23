@@ -10,7 +10,7 @@ const { registerDataSchema, loginDataSchema } = require("../schemas/user");
 router.post("/register", async (req, res, next) => {
     try{
         const validate = await registerDataSchema.validateAsync(req.body);
-        await db.one(validate.email).then((user) => {
+        await db.one(validate.regno).then((user) => {
             if (user) {return res.status(400).json({"status": 400,"type":"Error","message":"user is already registered!"});}
             else{
                 bcrypt.genSalt(10, (err, salt) => {
@@ -19,7 +19,7 @@ router.post("/register", async (req, res, next) => {
                         if (err) {return res.status(422).send(err.message);}
                         let userid = (new Date()).getTime().toString(36) + Math.random().toString(36).slice(2);
                         try {
-                            let uobj = { "email": validate.email, "password": hash, "phone": validate.phone, "userID": userid }
+                            let uobj = { "regno": validate.regno, "password": hash, "phone": validate.phone, "userID": userid }
                             db.create(uobj);
                             res.json(uobj);
                         } catch (err) { res.status(500).json({"status": 500,"type":"Error","details":err}); }
@@ -39,7 +39,7 @@ router.post("/register", async (req, res, next) => {
 //login a user to the system
 router.post("/login", async (req, res, next) => {
     const validate = await loginDataSchema.validateAsync(req.body);
-    await db.one(validate.email).then((user) => {
+    await db.one(validate.regno).then((user) => {
         if (!user) return res.status(400).json({"status": 400,"type":"Error","message":"user is not registered!"});
         bcrypt.compare(req.body.password, user.Password, function(err, result) {
             if (err) {return res.status(422).send({ "wrong password!": err });}
