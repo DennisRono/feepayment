@@ -1,7 +1,11 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import '../styles/css/auth.css'
 
 const auth = () => {
+    const [active, setActive] = useState('login')
+    const activity = (activity) => {
+        (activity==='login')?setActive('login'):setActive('register')
+    }
   return (
     <Fragment>
         <div className="authentification">
@@ -9,7 +13,7 @@ const auth = () => {
             <div class="contact-wrapper">
                 <div class="contFormSec">
                     <h2 class="contact-header">Fees Payment System</h2>
-                    <form action="contact.php" method="POST" className="registration-form">
+                    <form action="contact.php" method="POST" className={(active==='register')?"registration-form":"hide-activity"}>
                         <h3>Register</h3>
                         <div class="cont-group">
                             <div class="cont-gr-flex">
@@ -84,9 +88,10 @@ const auth = () => {
                             </div>
                             <span id="id-err"></span>
                         </div>
+                        <p>have an account? <span onClick={activity('login')}>Login here</span></p>
                         <input type="submit" value="register" name="contact" class="contact-btn"/>
                     </form>
-                    <form action="contact.php" method="POST" className="login-form">
+                    <form action="contact.php" method="POST" className={(active==='login')?"login-form":"hide-activity"}>
                         <h3>Login</h3>
                         <div class="cont-group">
                             <div class="user-input-wrp">

@@ -173,4 +173,8 @@
   color: rgb(109, 216, 255);
   background-color: rgb(233, 233, 233);
   transition: 0.3s;
+}
+
+.hide-activity {
+  display: none !important;
 }/*# sourceMappingURL=auth.css.map */
