@@ -9,6 +9,7 @@ const Auth = () => {
         fname: '',
         lname: '',
         regno: '',
+        phone: '',
         school: '',
         department: '',
         semester: '',
@@ -25,12 +26,12 @@ const Auth = () => {
     const registerSubmit = async (e) => {
         e.preventDefault()
         let res = await api('POST', 'auth/register', register)
-        console.log("Response from the Server");
         setResponse(res.message)
         setRegister({
             fname: '',
             lname: '',
             regno: '',
+            phone: '',
             school: '',
             department: '',
             semester: '',
@@ -56,7 +57,7 @@ const Auth = () => {
             <div className="contact-wrapper">
                 <div className="contFormSec">
                     <h2 className="contact-header">Fees Payment System</h2>
-                    <p className="formNotify">{response}</p>
+                    {(response!=='')?<p className="formNotify">{response}</p>:null}
                     <form action="contact.php" method="POST" className={(active==='register')?"registration-form":"hide-activity"} onSubmit={(e)=>registerSubmit(e)}>
                         <h3>Register</h3>
                         <div className="cont-group">
@@ -82,6 +83,12 @@ const Auth = () => {
                                 <br/>
                                 <input id="id-input" type="text" className="inputText" name="regno" value={register.regno} onChange={(e)=>{setRegister({ ...register, [e.target.name]: e.target.value })}}/>
                                 <span className="floating-label">Registration Number <span style={{color: "red"}}>*</span></span>
+                            </div>
+                            <span id="id-err"></span>
+                            <div className="user-input-wrp">
+                                <br/>
+                                <input id="id-input" type="text" className="inputText" name="phone" value={register.phone} onChange={(e)=>{setRegister({ ...register, [e.target.name]: e.target.value })}}/>
+                                <span className="floating-label">Phone Number <span style={{color: "red"}}>*</span></span>
                             </div>
                             <span id="id-err"></span>
                             <div className="cont-gr-flex">
