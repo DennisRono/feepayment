@@ -44,8 +44,8 @@ const Auth = () => {
     const loginSubmit = async (e) => {
         e.preventDefault()
         let res = await api('POST', 'auth/login', login)
-        setResponse(res.message)
-        setRegister({
+        setResponse(res)
+        setLogin({
             regno: '',
             password: ''
         })
@@ -139,7 +139,7 @@ const Auth = () => {
                             </div>
                             <span id="id-err"></span>
                         </div>
-                        <p>have an account? <span onClick={()=>{setActive('login')}}>Login here</span></p>
+                        <p>have an account? <span onClick={()=>{setActive('login'), setResponse({message: '', type: ''})}}>Login here</span></p>
                         <input type="submit" value="register" name="contact" className="contact-btn"/>
                     </form>
                     <form action="contact.php" method="POST" className={(active==='login')?"login-form":"hide-activity"}  onSubmit={(e)=>loginSubmit(e)}>
@@ -158,7 +158,7 @@ const Auth = () => {
                             </div>
                             <span id="id-err"></span>
                         </div>
-                        <p>don't have an account? <span onClick={()=>{setActive('register')}}>Register here</span></p>
+                        <p>don't have an account? <span onClick={()=>{setActive('register'), setResponse({message: '', type: ''})}}>Register here</span></p>
                         <input type="submit" value="login" name="contact" className="contact-btn"/>
                     </form>
                 </div>
