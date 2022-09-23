@@ -19,7 +19,7 @@ router.post("/register", async (req, res, next) => {
                         if (err) {return res.status(422).send(err.message);}
                         let userid = (new Date()).getTime().toString(36) + Math.random().toString(36).slice(2);
                         try {
-                            let uobj = { fname: "TBA", lname: "TBA", regno: validate.regno, password: hash, phone: validate.phone, year: "2022", school: "TBA", semester: "1", department: "TBA", userID: userid }
+                            let uobj = { fname: validate.fname, lname: validate.lname, regno: validate.regno, password: hash, phone: validate.phone, year: validate.year, school: validate.school, semester: validate.semester, department: validate.department, userID: userid }
                             db.create(uobj);
                             res.json({status: 200, type: "success", message: "Student registered successfully!"})
                         } catch (err) { res.json({"status": 500,"type":"Error","details":err}); }
