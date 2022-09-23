@@ -1,8 +1,10 @@
 import React, { Fragment, useState } from 'react'
 import '../styles/css/auth.css'
+import useLocalStorage from 'use-local-storage'
+import { api } from '../api/axios'
 
 const Auth = () => {
-    const [active, setActive] = useState('login')
+    const [active, setActive] = useLocalStorage('activity', 'login')
     const [register, setRegister] = useState({
         fname: '',
         lname: '',
