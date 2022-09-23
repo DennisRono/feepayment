@@ -10,6 +10,9 @@
   margin-top: 3rem;
   margin-left: 25px;
 }
+.contact .contact-wrapper .contFormSec .login-form {
+  margin: 0 20%;
+}
 .contact .contact-wrapper .contFormSec form .cont-group {
   margin-bottom: 40px;
 }

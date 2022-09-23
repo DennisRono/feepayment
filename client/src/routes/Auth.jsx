@@ -9,8 +9,8 @@ const auth = () => {
             <div class="contact-wrapper">
                 <div class="contFormSec">
                     <h2 class="contact-header">Fees Payment System</h2>
-                    <form action="contact.php" method="POST">
-                        <h3>Register to the system</h3>
+                    <form action="contact.php" method="POST" className="registration-form">
+                        <h3>Register</h3>
                         <div class="cont-group">
                             <div class="cont-gr-flex">
                                 <div class="contPut">
@@ -85,6 +85,24 @@ const auth = () => {
                             <span id="id-err"></span>
                         </div>
                         <input type="submit" value="register" name="contact" class="contact-btn"/>
+                    </form>
+                    <form action="contact.php" method="POST" className="login-form">
+                        <h3>Login</h3>
+                        <div class="cont-group">
+                            <div class="user-input-wrp">
+                                <br/>
+                                <input id="id-input" type="text" onkeyup="this.setAttribute('value', this.value);" class="inputText" name="name" value=""/>
+                                <span class="floating-label">Registration Number <span style={{color: "red"}}>*</span></span>
+                            </div>
+                            <span id="id-err"></span>
+                            <div class="user-input-wrp">
+                                <br/>
+                                <input id="id-input" type="text" onkeyup="this.setAttribute('value', this.value);" class="inputText" name="website" value=""/>
+                                <span class="floating-label">Password <span style={{color: "red"}}>*</span></span>
+                            </div>
+                            <span id="id-err"></span>
+                        </div>
+                        <input type="submit" value="login" name="contact" class="contact-btn"/>
                     </form>
                 </div>
             </div>
