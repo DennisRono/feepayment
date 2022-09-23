@@ -14,7 +14,7 @@ blogodb.all = () => {
 //fetch one record
 blogodb.one = (email, userID) => {
   return new Promise((resolve, reject)=>{
-    conn.query('SELECT * FROM students WHERE Email = ? || UserID = ?', [email, userID], (err, results)=>{
+    conn.query('SELECT * FROM students WHERE RegistrationNumber = ? || UserID = ?', [email, userID], (err, results)=>{
       if(err){return reject(err);}
       return resolve(results[0])
     });
@@ -25,15 +25,15 @@ blogodb.one = (email, userID) => {
 //create a new record
 blogodb.create = (userData) => {
   return new Promise((resolve, reject)=>{
-    conn.query("SELECT Email FROM  students WHERE Email = ?", [userData.email], (err, result) => {
+    conn.query("SELECT RegistrationNumber FROM  students WHERE RegistrationNumber = ?", [userData.email], (err, result) => {
         if(err){return reject(err);}
         if(result.length === 0){
-          conn.query('INSERT INTO students(Email, Phone, Password, UserID) VALUES( ?, ?, ?, ? )', [ userData.email, userData.phone, userData.password, userData.userID ], (err, results)=>{
+          conn.query('INSERT INTO students(RegistrationNumber, Phone, Password, UserID) VALUES( ?, ?, ?, ? )', [ userData.email, userData.phone, userData.password, userData.userID ], (err, results)=>{
             if(err){return reject(err);}
             return resolve(results)
           });
         }else{  
-          return reject({"error": "Email provided is already in use!", "message":"please login to your account", "details": err});
+          return reject({"error": "RegistrationNumber provided is already in use!", "message":"please login to your account", "details": err});
         }
     });
   });
@@ -42,14 +42,14 @@ blogodb.create = (userData) => {
 //register a new user to the system
 blogodb.reguser = (userData) => {
   return new Promise((resolve, reject)=>{
-    conn.query("SELECT Email FROM  students WHERE Email = ?", [userData.email], (err, result) => {
+    conn.query("SELECT RegistrationNumber FROM  students WHERE RegistrationNumber = ?", [userData.email], (err, result) => {
         if(err){return reject(err);}
         if(result.length === 0){
-          conn.query('INSERT INTO students(FullName, Email, Phone, Password, UserID, SessionID) VALUES( ?, ?, ?, ?, ?, ? )', [ userData.fullname, userData.email, userData.phone, userData.password, userData.userID, userData.sessionID ], (err, results)=>{
+          conn.query('INSERT INTO students(FullName, RegistrationNumber, Phone, Password, UserID, SessionID) VALUES( ?, ?, ?, ?, ?, ? )', [ userData.fullname, userData.email, userData.phone, userData.password, userData.userID, userData.sessionID ], (err, results)=>{
             return resolve(results)
           });
         }else{
-          return reject({"error": "Email provided is already in use!", "message":"please login to your account", "details": err});
+          return reject({"error": "RegistrationNumber provided is already in use!", "message":"please login to your account", "details": err});
         }
     });
   }).catch(err => { throw err });
@@ -58,16 +58,16 @@ blogodb.reguser = (userData) => {
 //google reg user to sys
 blogodb.googlereg = (userData) => {
   return new Promise((resolve, reject)=>{
-    conn.query("SELECT Email FROM  google_auth WHERE Email = ?", [userData.email], (err, result) => {
+    conn.query("SELECT RegistrationNumber FROM  google_auth WHERE RegistrationNumber = ?", [userData.email], (err, result) => {
         if(err){return reject(err);}
         if(result.length === 0){
-          conn.query('INSERT INTO google_auth(Email, FamilyName, GivenName, GoogleId, ImgUrl, Name, UserID) VALUES( ?, ?, ?, ?, ?, ?, ?)', [ userData.email, userData.familyName, userData.givenName, userData.googleId, userData.imageUrl, userData.name, userData.userID ], (err, results)=>{
+          conn.query('INSERT INTO google_auth(RegistrationNumber, FamilyName, GivenName, GoogleId, ImgUrl, Name, UserID) VALUES( ?, ?, ?, ?, ?, ?, ?)', [ userData.email, userData.familyName, userData.givenName, userData.googleId, userData.imageUrl, userData.name, userData.userID ], (err, results)=>{
             if(err){return reject(err);}
             return resolve(results)
           });
         }else{
-          console.log("Email provided is already in use!");
-          //return reject({"error": "Email provided is already in use!", "message":"please login to your account", "details": err});
+          console.log("RegistrationNumber provided is already in use!");
+          //return reject({"error": "RegistrationNumber provided is already in use!", "message":"please login to your account", "details": err});
         }
     });
   });
