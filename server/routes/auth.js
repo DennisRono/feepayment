@@ -36,31 +36,30 @@ router.post("/register", async (req, res, next) => {
     }
 })
 
-// complete registration TBA
-router.post('/tba', (req, res, next) => {
-    try {
-        
-    } catch (err) {
-        res.status(500).json({"status": 500,"type":"Error","details":err})
-    }
-})
-
 //login a user to the system
 router.post("/login", async (req, res, next) => {
-    const validate = await loginDataSchema.validateAsync(req.body);
-    await db.one(validate.regno).then((user) => {
-        if (!user) return res.status(400).json({"status": 400,"type":"Error","message":"user is not registered!"});
-        bcrypt.compare(req.body.password, user.Password, function(err, result) {
-            if (err) {return res.status(422).send({ "wrong password!": err });}
-            if (result) {
-                const token = jwt.sign({ data: user.UserID }, process.env.TOKEN_SECRET, { expiresIn: '15m' });
-                const refreshToken = jwt.sign({ data: user.UserID }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1h' });
-                return res.set({ 'auth-token': token, 'refreshToken': refreshToken }).json({ 'auth-token': token, 'refresh-token': refreshToken });
-            } else {
-                return res.status(400).json({"status": 400,"type":"Error","success":"false","message":"Wrong password!"});
-            }
+    try {
+        const validate = await loginDataSchema.validateAsync(req.body);
+        await db.one(validate.regno).then((user) => {
+            if (!user) return res.json({"status": 400,"type":"Error","message":"user is not registered!"});
+            bcrypt.compare(req.body.password, user.Password, function(err, result) {
+                if (err) {return res.send({ "wrong password!": err });}
+                if (result) {
+                    const token = jwt.sign({ data: user.UserID }, process.env.TOKEN_SECRET, { expiresIn: '15m' });
+                    const refreshToken = jwt.sign({ data: user.UserID }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1h' });
+                    return res.set({ 'auth-token': token, 'refreshToken': refreshToken }).json({ 'auth-token': token, 'refresh-token': refreshToken });
+                } else {
+                    return res.json({"status": 400,"type":"Error","success":"false","message":"Wrong password!"});
+                }
+            })
         })
-    })
+    } catch (err) {
+        if (err.isJoi === true) {
+            res.json({"status": 400,"type":"Error","message":err.details[0].message})
+        } else {
+            res.json({"status": 500,"type":"Error","details":err})
+        }
+    }
 })
 
 //jwt token issue
