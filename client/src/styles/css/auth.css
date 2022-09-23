@@ -147,6 +147,10 @@
   left: 0px;
   cursor: pointer;
 }
+.contact .contact-wrapper .contFormSec form p span {
+  color: #2ac6ff;
+  cursor: pointer;
+}
 .contact .contact-wrapper .contFormSec form .contact-btn {
   border-radius: 4px;
   padding: 13px 54px 15px;
