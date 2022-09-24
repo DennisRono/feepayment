@@ -1,0 +1,61 @@
+.notfoundWrapper{
+    height: 100vh;
+    text-align: center;
+    position: relative;
+    .notFound{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        .fourNotFound{
+            font-size: 16rem;
+            font-weight: 900;
+            font-family: Inconsolata,monospace;
+            color: aqua;
+        }
+        .notFoundTexts{
+            font-size: 1rem;
+            line-height: 2.2rem;
+            font-weight: 200;
+            font-style: normal;
+            color: var(--text-primary);
+            margin-top: -50px;
+            margin-bottom: 20px;
+        }
+        .notFoundLink{
+            margin-top: 30px;
+            font-size: 1.3rem;
+            line-height: 2.4rem;
+            font-weight: 300;
+            font-style: normal;
+            color: #ffffff;
+            cursor: pointer;
+            padding: 10px 40px;
+            border-radius: 23px;
+            background: linear-gradient(to bottom right,#462aff,#1419b6)!important;
+        }
+    }
+}
+@media(max-width: 450px){
+    .notfoundWrapper{
+        .notFound{
+            .fourNotFound{
+                font-size: 14rem;
+                font-weight: 600;
+            }
+            .notFoundTexts{
+                font-size: 0.8rem;
+                line-height: 2rem;
+            }
+        }
+    }
+}
+
+@media(max-width: 320px){
+    .notfoundWrapper{
+        .fourNotFound{
+            font-size: 10rem !important;
+            font-weight: 500 !important;
+        }
+    }
+}
