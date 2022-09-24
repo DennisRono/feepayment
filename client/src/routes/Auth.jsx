@@ -1,9 +1,11 @@
 import React, { Fragment, useState } from 'react'
 import '../styles/css/auth.css'
+import { useNavigate } from "react-router-dom"
 import useLocalStorage from 'use-local-storage'
 import { api } from '../api/axios'
 import { Link } from "react-router-dom"
 import { setJwtToken, setRefreshToken } from '../includes/session'
+
 
 const Auth = () => {
     const [active, setActive] = useLocalStorage('activity', 'login')
@@ -43,6 +45,7 @@ const Auth = () => {
         })
     }
 
+    let navigate = useNavigate()
     const loginSubmit = async (e) => {
         e.preventDefault()
         let res = await api('POST', 'auth/login', login)
@@ -55,6 +58,7 @@ const Auth = () => {
         // Handle user session & JWT & Redirection
         setJwtToken(res.authToken)
         setRefreshToken(res.refreshToken)
+        return navigate("/")
     }
   return (
     <Fragment>
