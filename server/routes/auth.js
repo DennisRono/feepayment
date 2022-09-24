@@ -63,7 +63,7 @@ router.post("/login", async (req, res, next) => {
 })
 
 //jwt token issue
-router.get('/token', async(req, res, next) => {
+router.get('/token', async (req, res, next) => {
     try {
         const verified = jwt.verify(req.body.refreshToken, process.env.REFRESH_TOKEN_SECRET);
         await db.one("", verified.data).then((user) => {
@@ -76,5 +76,17 @@ router.get('/token', async(req, res, next) => {
         res.status(400).json({"status": 400,"type":"Error","success":"false","message":"invalid refresh token","details":error});
     }
 });
+
+router.post('/verifytoken', (req, res, next) => {
+    const token = req.header('authToken');
+    if(!token){return res.json({type: "Error", message:"Access denied"})}
+    try {
+        const verified = jwt.verify(token, process.env.TOKEN_SECRET)
+        req.user = verified
+        next()
+    } catch (error) {
+        res.status(400).send({"invalid Token":error})
+    }
+})
 
 module.exports = router;

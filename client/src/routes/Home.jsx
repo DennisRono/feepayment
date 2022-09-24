@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from 'react'
 import { useNavigate } from "react-router-dom"
+import verifyToken from '../../../server/includes/verifyToken'
 //import { api } from '../api/axios'
 import { getJwtToken } from '../includes/session'
 
@@ -10,6 +11,8 @@ const Home = () => {
   useEffect(()=>{
     if (!jwtToken || jwtToken === 'undefined' || jwtToken === '') {
       return navigate("/auth")
+    } else {
+      let verified = vToken(jwtToken)
     }
   }, [])
 
