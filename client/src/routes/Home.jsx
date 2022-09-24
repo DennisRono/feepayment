@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react'
 import { useNavigate } from "react-router-dom"
 import { api } from '../api/axios'
-import { getJwtToken, getRefreshToken } from '../includes/session'
+import { getJwtToken, getRefreshToken, setJwtToken } from '../includes/session'
 
 const Home = () => {
   let navigate = useNavigate()
@@ -10,8 +10,12 @@ const Home = () => {
     if(ver.type !== 'success'){
       // use refresh token to fetch new token
       let nToken =  await api('GET', 'auth/token', {refreshToken: getRefreshToken()})
-      console.log(nToken)
-      //return navigate("/auth")
+      console.log(getRefreshToken())
+      if(nToken.type==='Error'){
+        return navigate("/auth")
+      } else {
+        setJwtToken(nToken.authToken)
+      }
     }
   }
   // check is user is logged in
