@@ -2,13 +2,16 @@
 .contact{
     margin: 5% 30%;
     @media(max-width: 480px){
-        margin: 5%;
+        margin: 10px;
     }
     .contact-wrapper{
         .contact-header{
             text-align: center;
             font-size: 4rem;
             margin-bottom: 15px;
+            @media(max-width: 480px){
+                font-size: 2.5rem;
+            }
         }
         .formNotify{
             text-align: center;
@@ -31,15 +34,22 @@
         .contFormSec{
             margin-top: 3rem;
             margin-left: 25px;
+            @media(max-width: 480px){
+                margin: 0 5px;
+                margin-top: 6rem;
+            }
             .login-form{
                 margin: 0 20%;
+                @media(max-width: 480px){
+                    margin: 5%;
+                }
             }
             form{
                 .cont-group{
                     margin-bottom: 40px;
                     .user-input-wrp {
                         position: relative;
-                        width: 94%;
+                        width: 90%;
                         margin: 5px 0px;
                     }
                     .user-input-wrp .inputText{

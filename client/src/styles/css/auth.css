@@ -4,13 +4,18 @@
 }
 @media (max-width: 480px) {
   .contact {
-    margin: 5%;
+    margin: 10px;
   }
 }
 .contact .contact-wrapper .contact-header {
   text-align: center;
   font-size: 4rem;
   margin-bottom: 15px;
+}
+@media (max-width: 480px) {
+  .contact .contact-wrapper .contact-header {
+    font-size: 2.5rem;
+  }
 }
 .contact .contact-wrapper .formNotify {
   text-align: center;
@@ -34,15 +39,26 @@
   margin-top: 3rem;
   margin-left: 25px;
 }
+@media (max-width: 480px) {
+  .contact .contact-wrapper .contFormSec {
+    margin: 0 5px;
+    margin-top: 6rem;
+  }
+}
 .contact .contact-wrapper .contFormSec .login-form {
   margin: 0 20%;
+}
+@media (max-width: 480px) {
+  .contact .contact-wrapper .contFormSec .login-form {
+    margin: 5%;
+  }
 }
 .contact .contact-wrapper .contFormSec form .cont-group {
   margin-bottom: 40px;
 }
 .contact .contact-wrapper .contFormSec form .cont-group .user-input-wrp {
   position: relative;
-  width: 94%;
+  width: 90%;
   margin: 5px 0px;
 }
 .contact .contact-wrapper .contFormSec form .cont-group .user-input-wrp .inputText {
