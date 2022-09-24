@@ -7,7 +7,10 @@ const Home = () => {
   let navigate = useNavigate()
   const vToken = async (t) => {
     let ver =  await api('POST', 'auth/verifytoken', {token: t})
-    console.log(ver);
+    if(ver.type !== 'success'){
+      // use refresh token to fetch new token
+      return navigate("/auth")
+    }
   }
   // check is user is logged in
   const jwtToken = getJwtToken()
