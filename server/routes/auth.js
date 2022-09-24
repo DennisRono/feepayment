@@ -42,6 +42,7 @@ router.post("/login", async (req, res, next) => {
         const validate = await loginDataSchema.validateAsync(req.body);
         await db.one(validate.regno).then((user) => {
             if (!user) return res.json({status: 400, type:"Error", message:"user is not registered!"});
+            console.log(user);
             bcrypt.compare(req.body.password, user.Password, function(err, result) {
                 if (err) {return res.send({ type: "Error", message: "wrong password!", details: err })}
                 if (result) {
@@ -57,7 +58,7 @@ router.post("/login", async (req, res, next) => {
         if (err.isJoi === true) {
             res.json({status: 400, type: "Error", message: err.details[0].message})
         } else {
-            res.json({status: 500, type: "Error", details: err})
+            res.json({status: 500, type: "Error", message: "something wrong happened", details: err})
         }
     }
 })

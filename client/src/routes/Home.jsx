@@ -8,7 +8,7 @@ const Home = () => {
   // check is user is logged in
   const jwtToken = getJwtToken()
   useEffect(()=>{
-    if (!jwtToken) {
+    if (!jwtToken || jwtToken === 'undefined' || jwtToken === '') {
       return navigate("/auth")
     }
   }, [])
