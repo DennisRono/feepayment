@@ -1,10 +1,17 @@
 import React, { Fragment } from 'react'
-import { api } from '../api/axios'
+//import { api } from '../api/axios'
+import { getJwtToken } from '../includes/session'
 
 const Home = () => {
-  const fetchToken = async (reftoken) => {
-    let res = await api('GET', 'auth/token', {refreshToken: reftoken})
+  // check is user is logged in
+  const jwtToken = getJwtToken();
+  if (!jwtToken) {
+    
   }
+
+  // const fetchToken = async () => {
+  //   let res = await api('GET', 'auth/token', {refreshToken: getRefreshToken})
+  // }
   return (
     <Fragment>
     </Fragment>

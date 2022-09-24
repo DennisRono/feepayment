@@ -47,7 +47,7 @@ router.post("/login", async (req, res, next) => {
                 if (result) {
                     const token = jwt.sign({ data: user.UserID }, process.env.TOKEN_SECRET, { expiresIn: '15m' });
                     const refreshToken = jwt.sign({ data: user.UserID }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1h' });
-                    return res.set({ 'auth-token': token, 'refreshToken': refreshToken }).json({ type: 'success', message: 'Login successful!!', 'auth-token': token, 'refresh-token': refreshToken });
+                    return res.set({ authToken: token, 'refreshToken': refreshToken }).json({ type: 'success', message: 'Login successful!!', authToken: token, refreshToken: refreshToken });
                 } else {
                     return res.json({status: 400, type: "Error", message: "Wrong password!"});
                 }

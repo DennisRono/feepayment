@@ -3,6 +3,7 @@ import '../styles/css/auth.css'
 import useLocalStorage from 'use-local-storage'
 import { api } from '../api/axios'
 import { Link } from "react-router-dom"
+import { setJwtToken, setRefreshToken } from '../includes/session'
 
 const Auth = () => {
     const [active, setActive] = useLocalStorage('activity', 'login')
@@ -50,6 +51,10 @@ const Auth = () => {
             regno: '',
             password: ''
         })
+
+        // Handle user session & JWT & Redirection
+        setJwtToken(res.authToken)
+        setRefreshToken(res.refreshToken)
     }
   return (
     <Fragment>
