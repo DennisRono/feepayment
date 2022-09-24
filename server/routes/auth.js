@@ -67,25 +67,25 @@ router.get('/token', async (req, res, next) => {
     try {
         const verified = jwt.verify(req.body.refreshToken, process.env.REFRESH_TOKEN_SECRET);
         await db.one("", verified.data).then((user) => {
-            if (!user) return res.status(400).json({ msg: "User not registered" });
+            if (!user) return res.json({ msg: "User not registered" });
             const token = jwt.sign({ data: user.UserID }, process.env.TOKEN_SECRET, { expiresIn: '15m' });
             res.header('auth-token', token).json({ 'auth-token': token });
         });
         next()
     } catch (error) {
-        res.status(400).json({"status": 400,"type":"Error","success":"false","message":"invalid refresh token","details":error});
+        res.json({"status": 400,"type":"Error","success":"false","message":"invalid refresh token","details":error});
     }
 });
 
 router.post('/verifytoken', (req, res, next) => {
-    const token = req.header('authToken');
-    if(!token){return res.json({type: "Error", message:"Access denied"})}
+    const token = req.body.token
+    if(!token){return res.json({type: "Error", message:"Access denied", status: 400})}
     try {
         const verified = jwt.verify(token, process.env.TOKEN_SECRET)
-        req.user = verified
+        res.json({verified: verified, message: "success", type: "success", status: 200})
         next()
     } catch (error) {
-        res.status(400).send({"invalid Token":error})
+        res.json({message: "invalid Token", type: "Error", status: 400})
     }
 })
 

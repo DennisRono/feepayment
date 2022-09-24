@@ -1,18 +1,21 @@
 import React, { Fragment, useEffect } from 'react'
 import { useNavigate } from "react-router-dom"
-import verifyToken from '../../../server/includes/verifyToken'
-//import { api } from '../api/axios'
+import { api } from '../api/axios'
 import { getJwtToken } from '../includes/session'
 
 const Home = () => {
   let navigate = useNavigate()
+  const vToken = async (t) => {
+    let ver =  await api('POST', 'auth/verifytoken', {token: t})
+    console.log(ver);
+  }
   // check is user is logged in
   const jwtToken = getJwtToken()
   useEffect(()=>{
     if (!jwtToken || jwtToken === 'undefined' || jwtToken === '') {
       return navigate("/auth")
     } else {
-      let verified = vToken(jwtToken)
+      vToken(jwtToken)
     }
   }, [])
 
