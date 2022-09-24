@@ -31,11 +31,24 @@
             .nav{
                 .nav-list{
                     display: flex;
+                    align-items: center;
                     .nav-link{
                         .nav-red{
                             padding: 10px 20px;
                             color: #272727;
                             font-weight: 500;
+                        }
+                        button{
+                            background: #2ac6ff;
+                            border-radius: 4px;
+                            padding: 10px 20px;
+                            font-size: 16px;
+                            letter-spacing: 1px;
+                            color: rgb(255, 255, 255);
+                            text-transform: uppercase;
+                            font-weight: 500;
+                            cursor: pointer;
+                            border: none;
                         }
                     }
                 }

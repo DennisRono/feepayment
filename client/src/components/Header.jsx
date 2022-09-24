@@ -1,8 +1,13 @@
 import React, { Fragment } from 'react'
 import '../styles/css/header.css'
 import { Link } from 'react-router-dom'
+import { setJwtToken, setRefreshToken } from '../includes/session'
 
 const Header = () => {
+  const logout = () => {
+    setJwtToken('')
+    setRefreshToken('')
+  }
   return (
     <Fragment>
         <header className="header">
@@ -23,6 +28,9 @@ const Header = () => {
                   </li>
                   <li className="nav-link">
                     <Link className="nav-red" to="/contact">Contact</Link>
+                  </li>
+                  <li className="nav-link">
+                    <button title="logout" onClick={()=>{logout()}}>Logout</button>
                   </li>
                 </ul>
               </nav>
