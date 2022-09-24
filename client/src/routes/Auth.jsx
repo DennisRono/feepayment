@@ -144,7 +144,9 @@ const Auth = () => {
                             setActive('login')
                             setResponse({message: '', type: ''})
                         }}>Login here</span></p>
-                        <input type="submit" value="register" name="contact" className="contact-btn"/>
+                        <div className="resetting-pass">
+                            <input type="submit" value="register" name="contact" className="contact-btn"/>
+                        </div>
                     </form>
                     <form action="contact.php" method="POST" className={(active==='login')?"login-form":"hide-activity"}  onSubmit={(e)=>loginSubmit(e)}>
                         <h3>Login</h3>
