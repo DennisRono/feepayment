@@ -8,6 +8,10 @@ li {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+}
+
 html, body {
   border-style: border-box;
   -webkit-font-smoothing: antialiased;
