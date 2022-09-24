@@ -9,8 +9,9 @@ const Home = () => {
     let ver =  await api('POST', 'auth/verifytoken', {token: t})
     if(ver.type !== 'success'){
       // use refresh token to fetch new token
-      let nToken =  await api('GET', 'auth/token', {refreshToken: getRefreshToken()})
-      console.log(getRefreshToken())
+      const refT = getRefreshToken()
+      let nToken =  await api('GET', 'auth/token', {refreshToken: refT})
+      console.log(nToken)
       if(nToken.type==='Error'){
         return navigate("/auth")
       } else {

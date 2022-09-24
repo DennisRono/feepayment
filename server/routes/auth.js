@@ -65,11 +65,14 @@ router.post("/login", async (req, res, next) => {
 //jwt token issue
 router.get('/token', async (req, res, next) => {
     try {
+        console.log(req.body.refreshToken);
         const verified = jwt.verify(req.body.refreshToken, process.env.REFRESH_TOKEN_SECRET)
-        console.log(verified)
-        const token = jwt.sign({ data: user.UserID }, process.env.TOKEN_SECRET, { expiresIn: '15m' })
-        res.header('authToken', token).json({ status: 200, type: 'success', message: 'successfully fetched new token', authToken: token })
-        next()
+        await db.one('', verified.data).then((user) => {
+            if (!user) return res.json({status: 400, type:"Error", message:"user is not registered!"})
+            const token = jwt.sign({ data: user.UserID }, process.env.TOKEN_SECRET, { expiresIn: '15m' })
+            res.header('authToken', token).json({ verified: verified, status: 200, type: 'success', message: 'successfully fetched new token', authToken: token })
+            next()
+        })
     } catch (error) {
         res.json({status: 400, type:"Error", message:"invalid refresh token", details:error});
     }
