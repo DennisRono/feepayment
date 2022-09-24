@@ -16,7 +16,7 @@ const Home = () => {
   }
 
   const vToken = async (t, refT) => {
-    let ver =  await api('POST', 'auth/verifytoken', {token: t})
+    let ver =  await api('POST', 'auth/verifytoken', {token: t, refreshToken: getRefreshToken()})
     if(ver.type !== 'success'){
       // use refresh token to fetch new token
       setTimeout(() => {
