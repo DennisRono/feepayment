@@ -62,15 +62,12 @@ router.post("/login", async (req, res, next) => {
     }
 })
 
-router.post('/verifytoken', (req, res) => {
+router.post('/verifytoken', async (req, res) => {
     try {
         if(!req.body.token){return res.json({type: "Error", message:"Access denied", status: 400})}
         const verified = jwt.verify(req.body.token, process.env.TOKEN_SECRET)
         res.json({verified: verified, message: "success", type: "success", status: 200})
     } catch (error) {
-        getNtok()
-    }
-    const getNtok = async () => {
         try {
             const verified = jwt.verify(req.body.refreshToken, process.env.REFRESH_TOKEN_SECRET)
             await db.one('', verified.data).then((user) => {
