@@ -56,9 +56,13 @@ const Auth = () => {
         })
 
         // Handle user session & JWT & Redirection
-        setJwtToken(res.authToken)
-        setRefreshToken(res.refreshToken)
-        return navigate("/")
+        if(res.type === 'success'){
+            setJwtToken(res.authToken)
+            setRefreshToken(res.refreshToken)
+            setTimeout(() => {
+                return navigate("/")
+            }, 3000)
+        }
     }
   return (
     <Fragment>

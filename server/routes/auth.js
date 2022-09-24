@@ -41,16 +41,15 @@ router.post("/login", async (req, res, next) => {
     try {
         const validate = await loginDataSchema.validateAsync(req.body);
         await db.one(validate.regno).then((user) => {
-            if (!user) return res.json({status: 400, type:"Error", message:"user is not registered!"});
-            console.log(user);
+            if (!user) return res.json({status: 400, type:"Error", message:"user is not registered!"})
             bcrypt.compare(req.body.password, user.Password, function(err, result) {
                 if (err) {return res.send({ type: "Error", message: "wrong password!", details: err })}
                 if (result) {
                     const token = jwt.sign({ data: user.UserID }, process.env.TOKEN_SECRET, { expiresIn: '15m' });
-                    const refreshToken = jwt.sign({ data: user.UserID }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1h' });
+                    const refreshToken = jwt.sign({ data: user.UserID }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1h' })
                     return res.set({ authToken: token, 'refreshToken': refreshToken }).json({ type: 'success', message: 'Login successful!!', authToken: token, refreshToken: refreshToken });
                 } else {
-                    return res.json({status: 400, type: "Error", message: "Wrong password!"});
+                    return res.json({status: 400, type: "Error", message: "Wrong password!"})
                 }
             })
         })
