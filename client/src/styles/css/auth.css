@@ -2,6 +2,11 @@
 .contact {
   margin: 5% 30%;
 }
+@media (max-width: 480px) {
+  .contact {
+    margin: 5%;
+  }
+}
 .contact .contact-wrapper .contact-header {
   text-align: center;
   font-size: 4rem;
@@ -170,7 +175,14 @@
   color: #2ac6ff;
   cursor: pointer;
 }
-.contact .contact-wrapper .contFormSec form .contact-btn {
+.contact .contact-wrapper .contFormSec form .resetting-pass {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+  margin-top: 2rem;
+}
+.contact .contact-wrapper .contFormSec form .resetting-pass .contact-btn {
   border-radius: 4px;
   padding: 13px 54px 15px;
   background-color: #2ac6ff;
@@ -189,13 +201,15 @@
   align-items: center;
   transition: color 0.15s ease-in-out 0s;
   display: inline-block;
-  margin-bottom: 4rem;
-  margin-top: 2rem;
 }
-.contact .contact-wrapper .contFormSec form .contact-btn:hover {
+.contact .contact-wrapper .contFormSec form .resetting-pass .contact-btn:hover {
   color: rgb(109, 216, 255);
   background-color: rgb(233, 233, 233);
   transition: 0.3s;
+}
+.contact .contact-wrapper .contFormSec form .resetting-pass p a {
+  text-decoration: none;
+  color: #2ac6ff;
 }
 
 .hide-activity {

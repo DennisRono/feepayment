@@ -1,6 +1,9 @@
 /*=-=-=-=-=-=contact page=-=-=-=-=-=-=*/
 .contact{
     margin: 5% 30%;
+    @media(max-width: 480px){
+        margin: 5%;
+    }
     .contact-wrapper{
         .contact-header{
             text-align: center;
@@ -183,32 +186,43 @@
                         cursor: pointer;
                     }
                 }
-                .contact-btn{
-                    border-radius: 4px;
-                    padding: 13px 54px 15px;
-                    background-color: #2ac6ff;
-                    border: 1px solid #2ac6ff;
-                    position: relative;
-                    overflow: hidden;
-                    z-index: 1;
-                    text-align: center;
-                    line-height: 19px;
-                    cursor: pointer;
-                    font-size: 16px;
-                    font-weight: 600;
-                    letter-spacing: 1.6px;
-                    text-transform: uppercase;
-                    color: rgb(255, 255, 255);
-                    -webkit-box-align: center;
+                .resetting-pass{
+                    display: flex;
                     align-items: center;
-                    transition: color 0.15s ease-in-out 0s;
-                    display: inline-block;
+                    justify-content: space-between;
                     margin-bottom: 4rem;
                     margin-top: 2rem;
-                    &:hover{
-                        color: rgb(109, 216, 255);
-                        background-color: rgb(233, 233, 233);
-                        transition: 0.3s;
+                    .contact-btn{
+                        border-radius: 4px;
+                        padding: 13px 54px 15px;
+                        background-color: #2ac6ff;
+                        border: 1px solid #2ac6ff;
+                        position: relative;
+                        overflow: hidden;
+                        z-index: 1;
+                        text-align: center;
+                        line-height: 19px;
+                        cursor: pointer;
+                        font-size: 16px;
+                        font-weight: 600;
+                        letter-spacing: 1.6px;
+                        text-transform: uppercase;
+                        color: rgb(255, 255, 255);
+                        -webkit-box-align: center;
+                        align-items: center;
+                        transition: color 0.15s ease-in-out 0s;
+                        display: inline-block;
+                        &:hover{
+                            color: rgb(109, 216, 255);
+                            background-color: rgb(233, 233, 233);
+                            transition: 0.3s;
+                        }
+                    }
+                    p{
+                        a{
+                            text-decoration: none;
+                            color: #2ac6ff;
+                        }
                     }
                 }
             }

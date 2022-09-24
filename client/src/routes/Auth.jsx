@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react'
 import '../styles/css/auth.css'
 import useLocalStorage from 'use-local-storage'
 import { api } from '../api/axios'
+import { Link } from "react-router-dom"
 
 const Auth = () => {
     const [active, setActive] = useLocalStorage('activity', 'login')
@@ -165,7 +166,10 @@ const Auth = () => {
                             setActive('register')
                             setResponse({message: '', type: ''})
                         }}>Register here</span></p>
-                        <input type="submit" value="login" name="contact" className="contact-btn"/>
+                        <div className="resetting-pass">
+                            <input type="submit" value="login" name="contact" className="contact-btn"/>
+                            <p><Link to="/reset">forgot password?</Link></p>
+                        </div>
                     </form>
                 </div>
             </div>
