@@ -63,28 +63,26 @@ router.post("/login", async (req, res, next) => {
 })
 
 //jwt token issue
-router.get('/token', async (req, res, next) => {
+router.get('/token', async (req, res) => {
     try {
-        console.log(req.body.refreshToken);
+        console.log(req.body);
         const verified = jwt.verify(req.body.refreshToken, process.env.REFRESH_TOKEN_SECRET)
         await db.one('', verified.data).then((user) => {
             if (!user) return res.json({status: 400, type:"Error", message:"user is not registered!"})
             const token = jwt.sign({ data: user.UserID }, process.env.TOKEN_SECRET, { expiresIn: '15m' })
             res.header('authToken', token).json({ verified: verified, status: 200, type: 'success', message: 'successfully fetched new token', authToken: token })
-            next()
         })
     } catch (error) {
         res.json({status: 400, type:"Error", message:"invalid refresh token", details:error});
     }
 });
 
-router.post('/verifytoken', (req, res, next) => {
+router.post('/verifytoken', (req, res) => {
     const token = req.body.token
     if(!token){return res.json({type: "Error", message:"Access denied", status: 400})}
     try {
         const verified = jwt.verify(token, process.env.TOKEN_SECRET)
         res.json({verified: verified, message: "success", type: "success", status: 200})
-        next()
     } catch (error) {
         res.json({message: "invalid Token", type: "Error", status: 400})
     }
