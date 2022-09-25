@@ -1,12 +1,14 @@
 import React, { Fragment } from 'react'
 import '../styles/css/header.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { setJwtToken, setRefreshToken } from '../includes/session'
 
 const Header = () => {
+  let navigate = useNavigate()
   const logout = () => {
     setJwtToken('')
     setRefreshToken('')
+    return navigate("/auth")
   }
   return (
     <Fragment>

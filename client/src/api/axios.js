@@ -1,6 +1,6 @@
 import axios from "axios"
 
-let baseURL = 'http://localhost:5000/'
+let baseURL = 'https://api.dynadoty.com/'
 
 export const api = async (method = 'GET', slug = '', data = {}) => {
     let config = {
@@ -14,3 +14,5 @@ export const api = async (method = 'GET', slug = '', data = {}) => {
     const response = await axios(config)
     return response.data
 }
+
+// set your backend endpoint here
