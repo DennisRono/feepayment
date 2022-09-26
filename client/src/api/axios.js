@@ -14,5 +14,3 @@ export const api = async (method = 'GET', slug = '', data = {}) => {
     const response = await axios(config)
     return response.data
 }
-
-// set your backend endpoint here
