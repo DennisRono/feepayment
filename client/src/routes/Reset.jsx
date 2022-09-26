@@ -4,19 +4,17 @@ import { api } from '../api/axios'
 import { Link } from "react-router-dom"
 
 const Reset = () => {
-    const [login, setLogin] = useState({
-        regno: '',
-        password: ''
+    const [regno, setRegno] = useState({
+        regno: ''
     })
 
     const [response, setResponse] = useState({message: '', type: ''})
     const loginSubmit = async (e) => {
         e.preventDefault()
-        let res = await api('POST', 'auth/login', login)
+        let res = await api('POST', 'auth/reset', login)
         setResponse(res)
-        setLogin({
-            regno: '',
-            password: ''
+        setRegno({
+            regno: ''
         })
     }
   return (
@@ -32,7 +30,7 @@ const Reset = () => {
                         <div className="cont-group">
                             <div className="user-input-wrp">
                                 <br/>
-                                <input id="id-input" type="text" className="inputText" name="regno" value={login.regno} onChange={(e)=>{setLogin({ ...login, [e.target.name]: e.target.value })}}/>
+                                <input id="id-input" type="text" className="inputText" name="regno" value={regno.regno} onChange={(e)=>{setRegno({ ...regno, [e.target.name]: e.target.value })}}/>
                                 <span className="floating-label">Registration Number <span style={{color: "red"}}>*</span></span>
                             </div>
                             <span id="id-err"></span>
